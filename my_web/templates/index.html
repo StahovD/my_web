@@ -1,0 +1,21 @@
+<head>
+ <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+  <h1>Ласкаво просимо, {{ current_user.username }}!</h1>
+  <ul>
+    {% for post in posts %}
+     <p>{{ post.content }}</p>
+     <p>{{ post.created_at }}</p>
+    {% endfor %}
+  </ul>
+  <form action="{{ url_for('new_post') }}" method="post">
+    <textarea name="content"></textarea>
+    <input type="submit" value="Post">
+  </form>
+{% endblock %}

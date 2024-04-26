@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %}{% endblock %}</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="{{ url_for('index') }}" class="btn btn-primary">Головна</a></li>
+          {% if current_user.is_authenticated %}
+            <li><a href="{{ url_for('logout') }}" class="btn btn-primary">Вийти</a></li>
+          {% else %}
+            <li><a href="{{ url_for('register') }}" class="btn btn-primary">Реєстрація</a></li>
+            <li><a href="{{ url_for('login') }}" class="btn btn-primary">Вхід</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    </header>
+    <main>
+      {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>
